@@ -1,4 +1,5 @@
 Matches = new Mongo.Collection("matches");
+Chats = new Mongo.Collection("chats");
 ROCK_PAPER_SCISSORS_KEY={
     "Rock":{
         "Rock":0,
@@ -16,9 +17,8 @@ ROCK_PAPER_SCISSORS_KEY={
         "Scissors":0
     }
 }
-player = "Player0"
-currentMatch = undefined
-
+player = "Player0";
+currentMatch = undefined;
 
 if (Meteor.isClient) {
 
@@ -28,6 +28,9 @@ if (Meteor.isClient) {
     Template.body.helpers({
         history: function () {
             return Matches.find ({$and:[{player1: { $exists: true } }, {player2: { $exists: true } }]}, {sort: {createdAt: -1}});
+        },
+        chatList: function () {
+            return Chats.find({});
         },
         mostRecentMatch: function () {
             return Matches.findOne({$and:[{player1: { $exists: true } }, {player2: { $exists: true } }]}, {sort: {createdAt: -1}});
@@ -94,6 +97,11 @@ if (Meteor.isClient) {
         },
         "click .cancel-clear": function (event) {
             $(".confirm-container").hide();
+        },
+        "click .chat-submit": function (event) {
+            var text = $(".new-chat-value").val();
+            Chats.insert({author:player,text:text});
+            $(".new-chat-value").val("");
         }
     });
 
