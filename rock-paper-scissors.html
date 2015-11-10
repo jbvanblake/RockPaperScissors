@@ -7,51 +7,86 @@
     <header>
         <h1>Rock, Paper, Scissors</h1>
     </header>
-    <div>
-        <h1>You are {{player}}</h1>
-    </div>
+    <div class="game-container">
+        <div class="current-game">
+            <div>
+                <h1>Welcome {{playerPretty}}</h1>
+            </div>
 
-    <div>
-        <h1>Current Match</h1>
-        {{#if currentMatch}}
-            {{#if myTurn player currentMatch}}
-                {{> goTemplate currentMatch}}
-            {{else}}
-                {{> waitTemplate currentMatch}}
-            {{/if}}
-        {{else}}
-            {{> startMatch}}
-        {{/if}}
-    </div>
+            <div class="game-info-area">
+                {{#if currentMatch}}
 
-    <ul>
-        {{#each history}}
-        {{> match}}
-        {{/each}}
-    </ul>
+                    {{#if myTurn player currentMatch}}
+                        {{> goTemplate currentMatch}}
+                    {{else}}
+                        {{> waitTemplate currentMatch}}
+                    {{/if}}
+                {{else}}
+                    {{> startMatch mostRecentMatch}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="toggle-history"><span>Toggle History</span></div>
+        <div class="history-container" style="display:none">
+            <div class="clear-history"><span>Clear History</span></div>
+            <div class="confirm-container" style="display:none">
+                <div><span>Are You Sure?</span></div>
+
+                <div>
+                    <div class="confirm-clear">Yes</div>
+                    <div class="cancel-clear">Cancel</div>
+                </div>
+            </div>
+            <ul>
+                {{#each history}}
+                {{> match}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
 </div>
 </body>
 
 <template name="match">
-    <li> {{player1}} vs. {{player2}} Played on: {{formatDate createdAt}}</li>
+    <li class="{{#if resultWin this}}win{{else}}{{#if resultLoss this}}lose{{/if}}{{/if}}">
+        <div>You chose:{{myChoice this}}</div>
+        <div>Opponent chose:{{hisChoice this}}</div>
+        <div>Played on: {{formatDate createdAt}}</div>
+    </li>
 </template>
 
 <template name="goTemplate">
-    <h1>Your Turn!!!!</h1>
 
-    <input class="action" type="button" value="Rock"/>
-    <input class="action" type="button" value="Paper"/>
-    <input class="action" type="button" value="Scissors"/>
+    {{#if hisChoice this}}
+        <h1>Opponent is waiting, choose an action: </h1>
+    {{else}}
+        <h1>It is your turn, choose an action: </h1>
+    {{/if}}
 
-    <div>Player 1 :{{player1}} vs. Player 2:{{player2}}</div>
+
+
+    <div class="game-actions">
+        <input class="action" type="button" value="Rock"/>
+        <input class="action" type="button" value="Paper"/>
+        <input class="action" type="button" value="Scissors"/>
+    </div>
 </template>
 
 <template name="waitTemplate">
-    <h1>Wait for opponents move....</h1>
+    <h1>Wait for opponent....</h1>
 
-    <div>Player 1 :{{player1}} vs. Player 2:{{player2}}</div>
+    <div>Your current action is: {{myChoice this}}</div>
 </template>
 
 <template name="startMatch">
+    {{#if this}}
+        <div class="result">
+            <h1>Previous Match</h1>
+            <div>{{prettyResult this}}</div>
+            <div>You chose: {{myChoice this}}</div><div> Your opponent chose:{{hisChoice this}}</div>
+        </div>
+    {{/if}}
     <input type="button" class="new-game" value="Click here to start a new Game!"/>
+
+
 </template>

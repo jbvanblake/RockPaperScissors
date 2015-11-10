@@ -18,10 +18,90 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 40em;
     margin: 0 auto;
     min-height: 100%;
     background: white;
+    overflow: auto;
+}
+.game-container{
+    margin: 1em;
+}
+
+.current-game {
+    min-height: 10em;
+}
+
+.game-info-area {
+    margin: 1em 3em;
+}
+.game-actions{
+
+}
+.result {
+    padding: 1em;
+    font: bold 1em arial;
+    color: Blue;
+    background-image: linear-gradient(to bottom, rgba(49, 84, 129, 0.52), rgba(118, 126, 130, 0.11) 100%);
+    border-radius:4px;
+    margin: 1em 0em;
+}
+.toggle-history{
+    margin: 1em;
+    width: 10em;
+    height: 2em;
+    text-align: center;
+    background-image: linear-gradient(to bottom, rgba(49, 84, 129, 0.72), rgba(118, 126, 130, 0.31) 100%);
+    border: black solid 2px;
+    border-radius: 4px;
+    padding-top: 10px;
+    float: right;
+    z-index:1;
+}
+.clear-history{
+    margin: 1em 1em;
+    width: 8em;
+    height: 1.5em;
+    text-align: center;
+    border: #777F82 solid 1px;
+    border-radius: 4px;
+    padding-top: 5px;
+    z-index: 1;
+    color: #777F82;
+}
+.confirm-container {
+    margin: 1em 1em;
+    width: 18em;
+    height: 4em;
+    text-align: center;
+    border: #777F82 solid 1px;
+    border-radius: 4px;
+    padding-top: 5px;
+    z-index: 1;
+    color: #777F82;
+}
+.confirm-clear, .cancel-clear {
+    width: 6em;
+    margin: .5em .9em;
+    height: 1.5em;
+    float: left;
+    vertical-align: middle;
+    border: #D5E2E7 solid 1px;
+    cursor:pointer;
+}
+.confirm-clear:hover, .cancel-clear:hover {
+    background: lightgrey;
+}
+
+
+.history-container {
+    float: left;
+}
+.history-container .win{
+     color:green;
+ }
+.history-container .lose{
+    color:red;
 }
 
 header {
