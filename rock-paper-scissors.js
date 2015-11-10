@@ -35,6 +35,9 @@ if (Meteor.isClient) {
                     $set: {player2: action}
                 });
             }
+        },
+        "click .new-game": function (event) {
+            Matches.insert({createdAt:new Date()});
         }
     });
 
