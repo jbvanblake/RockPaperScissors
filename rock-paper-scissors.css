@@ -35,9 +35,6 @@ body {
 .game-info-area {
     margin: 1em 3em;
 }
-.game-actions{
-
-}
 .result {
     padding: 1em;
     font: bold 1em arial;
@@ -102,7 +99,6 @@ body {
     background: lightgrey;
 }
 
-
 .history-container {
     float: left;
 }
@@ -128,7 +124,8 @@ body {
 .chat-box .new-chat-value{
     margin: 0em 1em;
     height: 2em;
-    font: bold 1em arial;
+    width: 50%;
+    font: bold .8em arial;
 }
 .clear-chat {
     margin:1em;
@@ -166,7 +163,7 @@ body {
     width: 4em;
 }
 .chat-container li{
-    width:20em;
+    width:40%;
 }
 .chat-submit{
     width: 5em;
@@ -179,36 +176,12 @@ header {
     position: relative;
 }
 
-#login-buttons {
-    display: block;
-}
-
 h1 {
     font-size: 1.5em;
     margin: 0;
     margin-bottom: 10px;
     display: inline-block;
     margin-right: 1em;
-}
-
-form {
-    margin-top: 10px;
-    margin-bottom: -10px;
-    position: relative;
-}
-
-.new-task input {
-    box-sizing: border-box;
-    padding: 10px 0;
-    background: transparent;
-    border: none;
-    width: 100%;
-    padding-right: 80px;
-    font-size: 1em;
-}
-
-.new-task input:focus{
-    outline: 0;
 }
 
 ul {
@@ -237,38 +210,3 @@ li .text {
     margin-left: 10px;
 }
 
-li.checked {
-    color: #888;
-}
-
-li.checked .text {
-    text-decoration: line-through;
-}
-
-li.private {
-    background: #eee;
-    border-color: #ddd;
-}
-
-header .hide-completed {
-    float: right;
-}
-
-.toggle-private {
-    margin-left: 5px;
-}
-
-@media (max-width: 600px) {
-    li {
-        padding: 12px 15px;
-    }
-
-    .search {
-        width: 150px;
-        clear: both;
-    }
-
-    .new-task input {
-        padding-bottom: 5px;
-    }
-}
