@@ -119,12 +119,19 @@ body {
 }
 .chat-box {
     margin: 1em;
-    height: 2em;
+    height: 7em;
+    overflow: auto;
 }
-.chat-box input{
+.clear-chat {
+    height: 2.5em;
+}
+.chat-box .new-chat-value{
     margin: 0em 1em;
     height: 2em;
     font: bold 1em arial;
+}
+.clear-chat {
+    margin:1em;
 }
 .player2-label{
     color:green;
@@ -161,7 +168,10 @@ body {
 .chat-container li{
     width:20em;
 }
-
+.chat-submit{
+    width: 5em;
+    height: 2.5em;
+}
 header {
     background: #d2edf4;
     background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);

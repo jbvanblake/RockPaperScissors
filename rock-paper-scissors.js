@@ -110,6 +110,9 @@ if (Meteor.isClient) {
         "click .restore-chat": function(event) {
             $(".chat-container").show();
             $(".restore-chat").hide();
+        },
+        "click .clear-chat": function(event) {
+            Meteor.call('removeAllChats');
         }
     });
 
@@ -198,6 +201,9 @@ if (Meteor.isServer) {
         return Meteor.methods({
             removeAllMatches: function() {
                 return Matches.remove({});
+            },
+            removeAllChats: function() {
+                return Chats.remove({});
             }
 
         });
