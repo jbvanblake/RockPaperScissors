@@ -1,14 +1,57 @@
 <head>
-  <title>rock-paper-scissors</title>
+    <title>Rock, Paper, Scissors</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+<div class="container">
+    <header>
+        <h1>Rock, Paper, Scissors</h1>
+    </header>
+    <div>
+        <h1>You are {{player}}</h1>
+    </div>
 
-  {{> hello}}
+    <div>
+        <h1>Current Match</h1>
+        {{#if currentMatch}}
+            {{#if myTurn player currentMatch}}
+                {{> goTemplate currentMatch}}
+            {{else}}
+                {{> waitTemplate currentMatch}}
+            {{/if}}
+        {{else}}
+            {{> startMatch}}
+        {{/if}}
+    </div>
+
+    <ul>
+        {{#each history}}
+        {{> match}}
+        {{/each}}
+    </ul>
+</div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="match">
+    <li> {{player1}} vs. {{player2}} Played on: {{formatDate createdAt}}</li>
+</template>
+
+<template name="goTemplate">
+    <h1>Your Turn!!!!</h1>
+
+    <input class="action" type="button" value="Rock"/>
+    <input class="action" type="button" value="Paper"/>
+    <input class="action" type="button" value="Scissors"/>
+
+    <div>Player 1 :{{player1}} vs. Player 2:{{player2}}</div>
+</template>
+
+<template name="waitTemplate">
+    <h1>Wait for opponents move....</h1>
+
+    <div>Player 1 :{{player1}} vs. Player 2:{{player2}}</div>
+</template>
+
+<template name="startMatch">
+    <input type="button" value="Click here to start a new Game!"/>
 </template>
