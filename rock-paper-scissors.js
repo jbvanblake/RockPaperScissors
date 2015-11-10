@@ -45,7 +45,9 @@ if (Meteor.isClient) {
             return "No one"
         },
         currentMatch: function () {
-            currentMatch = Matches.findOne ({$or:[{player1: { $exists: false } },{player2: { $exists: false } }]})
+            var matches =  Matches.find ({$or:[{player1: { $exists: false } },{player2: { $exists: false } }]});
+
+            currentMatch = Matches.findOne ({$or:[{player1: { $exists: false } },{player2: { $exists: false } }]});
             return currentMatch;
         }
     });
@@ -66,7 +68,10 @@ if (Meteor.isClient) {
             }
         },
         "click .new-game": function (event) {
-            Matches.insert({createdAt:new Date()});
+            var existingMatches =  Matches.findOne ({$or:[{player1: { $exists: false } },{player2: { $exists: false } }]});
+            if(!existingMatches){
+                Matches.insert({createdAt:new Date()});
+            }
         },
         "click .toggle-history": function (event) {
             if($(".history-container:visible").length >0){
