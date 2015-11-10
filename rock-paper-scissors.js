@@ -102,6 +102,14 @@ if (Meteor.isClient) {
             var text = $(".new-chat-value").val();
             Chats.insert({author:player,text:text});
             $(".new-chat-value").val("");
+        },
+        "click .minimize-chat": function(event) {
+            $(".chat-container").hide();
+            $(".restore-chat").show();
+        },
+        "click .restore-chat": function(event) {
+            $(".chat-container").show();
+            $(".restore-chat").hide();
         }
     });
 
