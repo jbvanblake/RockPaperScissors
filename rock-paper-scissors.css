@@ -113,6 +113,10 @@ body {
     position: absolute;
     background: white;
 }
+.chat-scrollable{
+    max-height: 20em;
+    overflow-y: scroll;
+}
 .chat-box {
     margin: 1em;
     height: 7em;

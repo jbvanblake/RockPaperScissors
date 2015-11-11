@@ -30,7 +30,7 @@ if (Meteor.isClient) {
             return Matches.find ({$and:[{player1: { $exists: true } }, {player2: { $exists: true } }]}, {sort: {createdAt: -1}});
         },
         chatList: function () {
-            return Chats.find({});
+            return Chats.find({},{sort: {createdAt: -1}});
         },
         mostRecentMatch: function () {
             return Matches.findOne({$and:[{player1: { $exists: true } }, {player2: { $exists: true } }]}, {sort: {createdAt: -1}});
@@ -99,10 +99,14 @@ if (Meteor.isClient) {
             $(".confirm-container").hide();
         },
         "click .chat-submit": function (event) {
-            var text = $(".new-chat-value").val();
-            Chats.insert({author:player,text:text});
-            $(".new-chat-value").val("");
+            submitChat();
         },
+        'keypress .new-chat-value': function (evt) {
+            if (evt.which === 13) {
+               submitChat();
+            }
+        },
+
         "click .minimize-chat": function(event) {
             $(".chat-container").hide();
             $(".restore-chat").show();
@@ -161,6 +165,12 @@ if (Meteor.isClient) {
         return "??";
     });
 }
+
+var submitChat = function(){
+    var text = $(".new-chat-value").val();
+    Chats.insert({author:player,text:text, createdAt: new Date()});
+    $(".new-chat-value").val("");
+};
 var myChoice = function(match){
     if(player == "player1"){
         return match.player1
@@ -169,7 +179,7 @@ var myChoice = function(match){
         return match.player2
     }
     return undefined;
-}
+};
 var hisChoice = function(match){
     if(player == "player1"){
         return match.player2
@@ -179,7 +189,7 @@ var hisChoice = function(match){
     }
     return undefined;
 
-}
+};
 var rockPaperScissors = function(action1, action2){
     if(ROCK_PAPER_SCISSORS_KEY[action1] !==undefined){
         if(ROCK_PAPER_SCISSORS_KEY[action1][action2] !==undefined){
@@ -187,7 +197,7 @@ var rockPaperScissors = function(action1, action2){
         }
     }
     return undefined;
-}
+};
 
 
 FlowRouter.route('/:playerName', {

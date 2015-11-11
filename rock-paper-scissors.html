@@ -7,11 +7,6 @@
 <div class="restore-chat" style="display:none;">Chat</div>
 <div class="chat-container">
     <div class="minimize-chat">Minimize</div>
-    <ul>
-        {{#each chatList}}
-            {{> chatTemplate}}
-        {{/each}}
-    </ul>
     <div class="chat-box">
         <div>
             <input class="new-chat-value" type="text" placeholder="Chat your Opponent..."/>
@@ -19,6 +14,12 @@
         </div>
         <input type="button" class="clear-chat" value="Clear Chat">
     </div>
+    <ul class="chat-scrollable">
+        {{#each chatList}}
+            {{> chatTemplate}}
+        {{/each}}
+    </ul>
+
 </div>
 <div class="container">
     <header>
